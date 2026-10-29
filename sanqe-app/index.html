@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <!-- Apply the saved theme before first paint so dark/cream users don't see a flash of the light theme. -->
+    <script>
+      (function () {
+        var colors = { light: '#ffffff', cream: '#f4eee1', dark: '#12141f' };
+        var t = 'light';
+        try { t = localStorage.getItem('sanqe-theme') || 'light'; } catch (e) {}
+        if (!colors[t]) t = 'light';
+        document.documentElement.setAttribute('data-theme', t);
+        var meta = document.createElement('meta');
+        meta.name = 'theme-color';
+        meta.content = colors[t];
+        document.head.appendChild(meta);
+        // Public pages arrive rendered for a logged-out visitor. Hide that
+        // from someone who is logged in until the app swaps in their screen.
+        try { if (Object.keys(localStorage).some(function (k) { return /^sb-.+-auth-token$/.test(k) })) document.documentElement.setAttribute('data-signed-in', ''); } catch (e) {}
+      })();
+    </script>
+    <style>html[data-signed-in] #root[data-ssr] { visibility: hidden; }</style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="description" content="Topic-wise practice for Quant, Reasoning, English and Computer, Pomodoro focus sessions, a daily challenge and AI-marked descriptive mocks for SBI and IBPS PO, Clerk and RRB." />
+    <title>Fedge Sanqe — Find your edge</title>
+  </head>
+  <body>
+    <noscript>Fedge Sanqe needs JavaScript to run.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

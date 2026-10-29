@@ -1,0 +1,26 @@
+# Fedge Sanqe. Search engines get the public pages, which are rendered on
+# the server: home, the pitch to coachings, the contact form and the
+# privacy policy. Everything else needs a login and
+# shows nothing useful.
+User-agent: *
+Allow: /$
+Allow: /for-coaching
+Allow: /contact
+Allow: /privacy.html
+Disallow: /api/
+Disallow: /app.html
+Disallow: /login
+Disallow: /admin
+Disallow: /coach
+Disallow: /partner
+Disallow: /courses
+Disallow: /practice
+Disallow: /review
+Disallow: /focus
+Disallow: /speed
+Disallow: /daily
+Disallow: /learn
+Disallow: /mocks
+Disallow: /series
+
+Sitemap: https://fedge-sanqe.vercel.app/sitemap.xml
